@@ -10,19 +10,21 @@ import os
 import math
 
 # Define maximum distance threshold
-threshold = 20
+threshold = 20 #metres
 
 # Read file and store data in a numpy array
 data = np.genfromtxt('South Quay 5m x 5m grid @ LAT.xyz',skip_header=16)
-# Calculate the number of lines and columns
+# Calculate the number of lines and columns of the data array
 noLines = data.shape[0]
 noColumns = data.shape[1]
 
-# Calculate the distance of the k element to all other elements
+# Initiate variables and flags
 distanceVector = []
 k = 0
 completionTracker = 1
 tooCloseFlag = 0
+
+#
 while completionTracker == 1:
     for i in range(noLines):
         distanceVector.extend([(math.sqrt((data[k][0]-data[i][0])**2+(data[k][1]-data[i][1])**2))])
