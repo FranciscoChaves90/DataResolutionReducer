@@ -8,13 +8,14 @@ import os
 import math
 
 # User input
-threshold       = 20                 # Minimum desired distance between points
+threshold       = 100                # Minimum desired distance between points
 inputFilename   = 'OriginalData.xyz' # Name of input file
 headerLines     = 16                 # Number of header lines on input file
+delimiter       = ''                 # Select type of delimiter
 outputFilename  = 'ReducedData.xyz'  # Name of output file
 
 # Read file and store data in a numpy array
-data = np.genfromtxt(inputFilename,skip_header=16)
+data = np.genfromtxt(inputFilename,skip_header=16,delimiter=delimiter)
 # Calculate the number of lines and columns of the data array
 noLines   = data.shape[0]
 noColumns = data.shape[1]
