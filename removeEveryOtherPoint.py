@@ -11,8 +11,12 @@ import math
 threshold       = 100                # Minimum desired distance between points
 inputFilename   = 'OriginalData.xyz' # Name of input file
 headerLines     = 16                 # Number of header lines on input file
-delimiter       = ''                 # Select type of delimiter
+delimiter       = ''                 # Select type of delimiter - if delimiter is a space or multiple spaces uses ''.
 outputFilename  = 'ReducedData.xyz'  # Name of output file
+
+##########################################################
+# End of user input. Please do not edit beyond this line!#
+##########################################################
 
 # Read file and store data in a numpy array
 data = np.genfromtxt(inputFilename,skip_header=16,delimiter=delimiter)
