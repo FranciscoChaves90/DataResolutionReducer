@@ -6,13 +6,14 @@
 import numpy as np
 import os
 import math
+import time
 
 # User input
-threshold       = 100                # Minimum desired distance between points
-inputFilename   = 'OriginalData.xyz' # Name of input file
+threshold       = 5                # Minimum desired distance between points
+inputFilename   = 'Khalifa Port Pre Bathy Survey July-August_2016_1x1 - Copy_LAT_ConvertedMSL.xyz' # Name of input file
 headerLines     = 16                 # Number of header lines on input file
 delimiter       = ''                 # Select type of delimiter - if delimiter is a space or multiple spaces uses ''.
-outputFilename  = 'ReducedData.xyz'  # Name of output file
+outputFilename  = 'Khalifa Port Pre Bathy Survey July-August_2016_1x1 - Copy_LAT_ConvertedMSL_reduced.xyz'  # Name of output file
 
 ##########################################################
 # End of user input. Please do not edit beyond this line!#
@@ -23,7 +24,7 @@ data = np.genfromtxt(inputFilename,skip_header=16,delimiter=delimiter)
 # Calculate the number of lines and columns of the data array
 noLines   = data.shape[0]
 noColumns = data.shape[1]
-print "Original number of points in the file: %d\n" % noLines
+print("Original number of points in the file: %d\n" % noLines)
 
 # Initiate variables and flags
 distanceVector = []
@@ -31,6 +32,8 @@ k = 0
 completionTracker = 1
 tooCloseFlag = 0
 iterationCounter = 0
+start = time.time()
+elapsedTime = start
 
 # Main data removal loop
 while completionTracker == 1:
@@ -55,7 +58,8 @@ while completionTracker == 1:
     oldNoLines  = noLines # Only for printing purposes
     noLines     = data.shape[0]
     noColumns   = data.shape[1]
-    print "Sweep %d...\nNumber of points removed > %d points <\nTotal number of points > %d points <\n" % (iterationCounter,oldNoLines-noLines,noLines)
+    elapsedTime = time.time()-elapsedTime
+    print("Sweep %d...\nNumber of points removed > %d points <\nTotal number of points > %d points <\nElapsed Time %.1f seconds\n" % (iterationCounter,oldNoLines-noLines,noLines,time.time()-start))
     # loop to identify if there are points closer to each other of a distance below the specified closerThanThreshold
     # Loop through each point
     for i in range(noLines):
@@ -75,7 +79,7 @@ while completionTracker == 1:
     # If no points are found too close to each other, raise the completionTracker flag (to indentify that the task is complete and break out of the while loop)
     if tooCloseFlag == 0:
         completionTracker=0
-        print "Point removal complete.\n"
+        print("Point removal complete.\n")
     # Clear variables (still uncertain as to how re-writting variables works in python, deleting for safety)
     del distanceVector,distanceVectorArray,closerThanThreshold,sortedCloserThanThreshold,sortedCloserThanThresholdArray
     distanceVector = []
@@ -87,4 +91,4 @@ fid = open(outputFilename,'w')
 for i in range(data.shape[0]):
     fid.write('%.3f,%.3f,%.3f\n' % (data[i,0],data[i,1],data[i,2]))
 fid.close()
-print ">> Task complete sucessfully <<"
+print(">> Task complete sucessfully <<")

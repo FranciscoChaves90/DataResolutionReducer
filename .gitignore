@@ -106,3 +106,6 @@ venv.bak/
 # outputFiles
 /OriginalData.xyz
 /ReducedData.xyz
+*.xyz
+*.xyz
+*.xyz
