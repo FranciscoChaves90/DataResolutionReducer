@@ -1,4 +1,4 @@
-# DataResolutionReducer
+# Data Resolution Reducer
 
 The resolution of bathymetric and topographic survey data is ever-increasing and with it, the size of the associated data-files. Such high resolution data is often unnecessary and pose obstancles to an efficient processing of the data.
 
@@ -12,11 +12,11 @@ The present script allows the user to reduce the resolution of a given bathymetr
 ## Instructions
 
 1. Provide all the required parameters in the "User Input" Section.
-  - 'threshold'       Desired minimum distance between points / Desired resolution
-  - 'inputFilename'   Name of the input file
-  - 'headerLines'     Number of header lines in the input file
-  - 'delimiter'       Delimiter type: comma **','** / point **'.'** / white-space (space or tab or multiple spaces) **'.'**
-  - 'outputFilename'  Name of the output file
+  - `threshold`       Desired minimum distance between points / Desired resolution
+  - `inputFilename`   Name of the input file
+  - `headerLines`     Number of header lines in the input file
+  - `delimiter`       Delimiter type: comma **','** / point **'.'** / white-space (space or tab or multiple spaces) **'.'**
+  - `outputFilename`  Name of the output file
   
 ## Requirements
 
